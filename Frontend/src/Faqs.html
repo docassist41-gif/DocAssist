@@ -479,8 +479,18 @@
               <i class="fa-solid fa-user"></i> Account
             </a>
             <ul class="dropdown-menu">
-              <li><a href="myprofile.html">My Profile</a></li>
-              <li><a href="MyAppointments.html">My Appointments</a></li>
+              <li>
+                <a href="myprofile.html"
+                  ><i class="fa-regular fa-id-card"></i> My Profile</a
+                >
+              </li>
+              <li>
+                <a href="MyAppointments.html"
+                  ><i class="fa-regular fa-calendar-check"></i> My
+                  Appointments</a
+                >
+              </li>
+              <!-- Logout will be added dynamically via JavaScript -->
             </ul>
           </li>
           <!-- Dynamic Auth Button (Login / Logout) -->
@@ -594,6 +604,7 @@
       });
 
       // ========== DYNAMIC NAVBAR: Show "Login" if no user, show "My Profile" dropdown if patient logged in ==========
+      // ========== DYNAMIC NAVBAR: Show "Login" if no user, show "My Profile" dropdown with Logout inside ==========
       function updateNavbarForAuth() {
         const userRole = localStorage.getItem("userRole");
         const authToken = localStorage.getItem("authToken");
@@ -604,35 +615,40 @@
         if (userRole === "patient" && authToken) {
           // Show profile dropdown menu
           if (profileMenuLi) profileMenuLi.style.display = "inline-flex";
-          // Transform login button into logout button (like reference page)
-          if (authButtonLi) {
-            authButtonLi.style.display = "block";
-            authButtonLi.innerHTML = `
-                        <a href="javascript:void(0);" id="logoutNavBtn" class="login-button" style="background: transparent;">
-                            <i class="fa-solid fa-sign-out-alt"></i> Logout
-                        </a>
-                    `;
-            const logoutBtn = document.getElementById("logoutNavBtn");
-            if (logoutBtn) {
-              logoutBtn.addEventListener("click", (e) => {
+          // Hide the separate login button
+          if (authButtonLi) authButtonLi.style.display = "none";
+
+          // Get the dropdown menu and add logout option if not already present
+          const dropdownMenu = profileMenuLi.querySelector(".dropdown-menu");
+          if (dropdownMenu && !document.getElementById("logoutDropdownItem")) {
+            const logoutLi = document.createElement("li");
+            logoutLi.id = "logoutDropdownItem";
+            logoutLi.innerHTML = `
+                <a href="javascript:void(0);" id="logoutLink" class="logout-button">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </a>
+            `;
+            dropdownMenu.appendChild(logoutLi);
+
+            // Add logout event listener
+            document
+              .getElementById("logoutLink")
+              .addEventListener("click", (e) => {
                 e.preventDefault();
-                // Clear all user session data
                 localStorage.removeItem("authToken");
                 localStorage.removeItem("userRole");
                 localStorage.removeItem("userId");
                 localStorage.removeItem("userName");
-                // Redirect to same page to refresh navbar state
                 window.location.href = "Faqs.html";
               });
-            }
           }
-          // Ensure dropdown toggle works (re-attach event to profile icon)
+
+          // Ensure dropdown toggle works
           const dropdown = profileMenuLi;
           const profileIcon = dropdown
             ? dropdown.querySelector(".profile-icon")
             : null;
           if (profileIcon) {
-            // Remove old listener by cloning to avoid duplicates
             const newIcon = profileIcon.cloneNode(true);
             profileIcon.parentNode.replaceChild(newIcon, profileIcon);
             newIcon.addEventListener("click", (e) => {
@@ -642,15 +658,15 @@
             });
           }
         } else {
-          // Not logged in or not patient: hide profile dropdown, show Login link
+          // Not logged in: hide profile dropdown, show Login button
           if (profileMenuLi) profileMenuLi.style.display = "none";
           if (authButtonLi) {
             authButtonLi.style.display = "block";
             authButtonLi.innerHTML = `
-                        <a href="login.html" class="login-button">
-                            <i class="fa-solid fa-right-to-bracket"></i> Login
-                        </a>
-                    `;
+                <a href="login.html" class="login-button">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                </a>
+            `;
           }
         }
       }
