@@ -36,7 +36,7 @@ const io = new Server(server, {
       "http://localhost:4200",
       "http://localhost:5500",
       "http://127.0.0.1:5500",
-      "https://doctor-appointment-system-lilac.vercel.app/index.html"
+      "doc-assist-8q8s.vercel.app"
       
     ],
     methods: ["GET", "POST"],
@@ -51,8 +51,7 @@ initializeSocket(io);
 console.log("Socket.io initialized with server");
 
 app.use(cors({
-  origin: ['http://localhost:4200', 'http://localhost:5500', 'http://127.0.0.1:5500',       "https://doctor-appointment-system-lilac.vercel.app/index.html"
-],
+  origin: ['http://localhost:4200', 'http://localhost:5500', 'http://127.0.0.1:5500', "doc-assist-8q8s.vercel.app"],
   methods: ['GET','POST','PUT','DELETE','PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
