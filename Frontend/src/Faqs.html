@@ -1,430 +1,728 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <title>FAQs - DocAssist</title>
-   <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e6f2ff;
-    margin: 0;
-    padding: 20px;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0%;
-    width: 100%;
-    background-color: rgb(9, 102, 102);
-    color: white;
-    z-index: 1000;
-    left: 0%;
-}
-
-nav ul {
-    display: flex;
-}
-
-nav ul li {
-    list-style: none;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    margin-inline: 20px;
-}
-
-nav ul li a:hover {
-    color: black;
-    border-bottom: 2px solid black;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    margin: 0;
-}
-
-.logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 10px;
-    object-fit: cover;
-}
-
-.logo h1 {
-    font-size: 28px;
-    margin: 0;
-    background: linear-gradient(45deg, #ffffff, #cceeff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.logo img:hover {
-    transform: scale(1.1) rotate(-5deg);
-}
-
-h1.FAQ {
-    font-size: 28px;
-    font-weight: 700;
-    text-align: center;
-    color: #009999;
-    margin: 100px auto 20px auto;
-    padding: 15px;
-    border: 3px solid #009999;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 700px;
-    background-color: #ffffff;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease,
-                color 0.3s ease,
-                border-color 0.3s ease,
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-}
-
-h1.FAQ:hover {
-    color: #007d7d;
-    border-color: #007d7d;
-    background-color: #f0fefe;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.faq-container {
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.faq {
-    margin-bottom: 15px;
-}
-
-.faq h2 {
-    cursor: pointer;
-    margin: 0;
-    padding: 10px;
-    background: #0f8888;
-    color: white;
-    border-radius: 5px;
-    border: 2px solid #0f8888;
-    transition: background-color 0.3s ease,
-                color 0.3s ease,
-                border-color 0.3s ease,
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-}
-
-.faq h2:hover {
-    background-color: #0db1b1;
-    border-color: #0db1b1;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.faq p {
-    display: none;
-    padding: 10px;
-    border: 1px solid #0f8888;
-    border-radius: 5px;
-    background: #e7f9f9;
-}
-
-#bar {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 40px;
-    color: white;
-    margin-top: 66px;
-    background: linear-gradient(135deg, #096666, #064949);
-    border-top: 4px solid #0f8080;
-}
-
-.footer > div {
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0 20px;
-}
-
-.footer > div:last-child {
-    border-right: none;
-}
-
-.footer h3 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.footer p {
-    margin: 15px 0;
-    font-size: 15px;
-}
-
-.contact-info,
-.text,
-.quick-links,
-.Legal {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
-    flex-direction: column;
-}
-
-.quick-links ul,
-.Legal ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.quick-links li,
-.Legal li {
-    margin: 6px 0;
-    font-size: 15px;
-}
-
-.quick-links a,
-.Legal a {
-    color: #fff;
-    text-decoration: none;
-    position: relative;
-    font-weight: 600;
-    cursor: pointer;
-    padding-bottom: 3px;
-    transition: color 0.3s ease;
-}
-
-.quick-links a::after,
-.Legal a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: white;
-    border-radius: 2px;
-    transition: width 0.3s ease, left 0.3s ease;
-}
-
-.quick-links a:hover::after,
-.Legal a:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-.quick-links a:hover,
-.Legal a:hover {
-    color: white;
-    text-shadow: 0 0 5px #ffd700aa;
-}
-
-.specialties-columns {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.text p {
-    margin-top: 12px;
-}
-
-@media screen and (max-width: 900px) {
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: rgb(9, 102, 102);
-        transition: max-height 0.3s ease;
-    }
-
-    nav ul li {
-        text-align: center;
-        width: 70%;
-        padding: 10px 0;
-    }
-
-    nav ul.active {
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: #e6f2ff;
+        margin: 0;
+        padding: 20px;
         display: flex;
-    }
-
-    #bar {
-        z-index: 1001;
-        display: block;
-    }
-
-    .footer {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+        min-height: 100vh;
+      }
 
-    .footer > div {
+      /* ----- NAVIGATION (identical to Alldoctorsreal page style) ----- */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 5%;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        border-right: none;
-        margin-bottom: 20px;
-    }
+        background-color: rgb(9, 102, 102);
+        color: white;
+        z-index: 1000;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
 
-    .quick-links ul,
-    .Legal ul {
+      .logo {
+        display: flex;
         align-items: center;
-    }
+        gap: 12px;
+      }
 
-    .quick-links li,
-    .Legal li {
-        margin: 5px 0;
-    }
-}
-#myAppointments{
-    display: none;
-}
-</style>
+      .logo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: transform 0.2s ease;
+      }
 
-</head>
+      .logo img:hover {
+        transform: scale(1.05) rotate(-2deg);
+      }
 
-<body>
+      .logo h1 {
+        font-size: 28px;
+        background: linear-gradient(45deg, #ffffff, #cceeff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+      }
+
+      nav ul {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        list-style: none;
+        transition: all 0.3s ease;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 12px;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      nav ul li a:hover {
+        color: #000;
+        border-bottom: 2px solid black;
+      }
+
+      /* Dropdown profile menu */
+      .dropdown {
+        position: relative;
+      }
+
+      .profile-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 8px 12px;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .profile-icon i {
+        font-size: 20px;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        list-style: none;
+        padding: 8px 0;
+        min-width: 180px;
+        z-index: 1100;
+        opacity: 0;
+        transform: translateY(-12px);
+        pointer-events: none;
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .dropdown.active .dropdown-menu {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .dropdown-menu li a {
+        display: block;
+        padding: 10px 20px;
+        color: #2c3e2f;
+        font-size: 15px;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+
+      .dropdown-menu li a:hover {
+        background: #f0f7f7;
+        color: #0f8080;
+        border-bottom: none;
+      }
+
+      #authButton a {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 30px;
+        padding: 6px 16px;
+      }
+
+      #authButton a:hover {
+        background: white;
+        color: #096666;
+        border-bottom: none;
+      }
+
+      #bar {
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: white;
+      }
+
+      /* FAQ section */
+      h1.FAQ {
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        color: #009999;
+        margin: 100px auto 30px auto;
+        padding: 18px 20px;
+        border: 3px solid #009999;
+        border-radius: 60px;
+        max-width: 750px;
+        background-color: #ffffff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+      }
+
+      h1.FAQ:hover {
+        background: #f0fefe;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-container {
+        max-width: 850px;
+        margin: 0 auto 40px;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+        padding: 28px 30px;
+      }
+
+      .faq {
+        margin-bottom: 18px;
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .faq h2 {
+        cursor: pointer;
+        margin: 0;
+        padding: 16px 20px;
+        background: #0f8888;
+        color: white;
+        border-radius: 14px;
+        font-size: 1.2rem;
+        transition: all 0.25s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq h2:after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 14px;
+        transition: transform 0.2s;
+      }
+
+      .faq.active h2:after {
+        transform: rotate(180deg);
+      }
+
+      .faq h2:hover {
+        background-color: #0db1b1;
+        transform: translateY(-1px);
+      }
+
+      .faq p {
+        display: none;
+        padding: 18px 22px;
+        border-left: 4px solid #0f8888;
+        background: #f9fefe;
+        margin: 8px 0 0 0;
+        border-radius: 0 0 14px 14px;
+        line-height: 1.5;
+        color: #1e2f2f;
+      }
+
+      /* Footer */
+      .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 40px 5%;
+        color: white;
+        margin-top: auto;
+        background: linear-gradient(135deg, #096666, #064949);
+        border-top: 4px solid #0f8080;
+      }
+
+      .footer > div {
+        flex: 1;
+        min-width: 200px;
+        margin: 10px;
+        padding: 0 15px;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .footer > div:last-child {
+        border-right: none;
+      }
+
+      .footer h3 {
+        margin-bottom: 16px;
+        font-size: 20px;
+      }
+
+      .footer p,
+      .footer li {
+        font-size: 14px;
+        margin: 12px 0;
+      }
+
+      .quick-links ul,
+      .Legal ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .quick-links li,
+      .Legal li {
+        margin: 10px 0;
+      }
+
+      .quick-links a,
+      .Legal a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.2s;
+      }
+
+      .quick-links a:hover,
+      .Legal a:hover {
+        text-shadow: 0 0 6px #ffd700;
+        letter-spacing: 0.3px;
+      }
+
+      /* responsive */
+      @media screen and (max-width: 900px) {
+        nav {
+          padding: 12px 5%;
+        }
+        nav ul {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: rgb(9, 102, 102);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s ease;
+          z-index: 999;
+          padding: 0;
+          margin: 0;
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        nav ul.active {
+          max-height: 380px;
+          padding: 12px 0;
+        }
+        nav ul li {
+          text-align: center;
+          margin: 8px 0;
+        }
+        #bar {
+          display: block;
+        }
+        .dropdown {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .profile-icon {
+          justify-content: center;
+          width: auto;
+        }
+        .dropdown-menu {
+          position: static;
+          width: 90%;
+          margin: 8px auto 0;
+          background: #eef5f5;
+          box-shadow: none;
+          opacity: 1;
+          transform: none;
+          pointer-events: none;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease;
+          border-radius: 12px;
+        }
+        .dropdown.active .dropdown-menu {
+          max-height: 120px;
+          pointer-events: auto;
+          margin-top: 5px;
+          padding: 8px 0;
+        }
+        .dropdown-menu li a {
+          color: #0f8080;
+          text-align: center;
+        }
+        .footer {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer > div {
+          border-right: none;
+          margin-bottom: 20px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        h1.FAQ {
+          font-size: 24px;
+          margin-top: 85px;
+        }
+        .faq-container {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="container">
-        <nav>
-            <div class="logo">
-                <img src="images/Da.png" alt="DocAssist Logo">
-                <h1>DocAssist</h1>
-            </div>
-            <i id="bar" class="fa-solid fa-bars"></i>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="Alldoctorsreal.html"><i class="fas fa-user-md"></i> Find a Doctor</a></li>
-                <li><a href="Contactus.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
-                <li><a href="Faqs.html"><i class="fas fa-question-circle"></i> FAQs</a></li> 
-                <!-- <li id="MyAppointments"><a href="MyAppointments.html">My Appointments</a></li> -->
-            </ul>
-        </nav>
-
-        <h1 class="FAQ">Frequently Asked Questions</h1>
-        <div class="faq-container">
-            <div class="faq">
-  <h2>How do I know if my appointment is confirmed?</h2>
-  <p>After booking, you will see your appointment listed in your dashboard. You will also receive an email confirming your appointment.</p>
-</div>
-<div class="faq">
-  <h2>Can I leave feedback for a doctor?</h2>
-  <p>Yes, after your appointment, you will have the option to leave feedback and a rating for the doctor.</p>
-</div>
-            <div class="faq">
-                <h2>What if I need to cancel my appointment?</h2>
-                <p>You can cancel your appointment through your account on our webiste.</p>
-            </div>
-
-            <div class="faq">
-                <h2>Do I need to create an account to book an appointment?</h2>
-                <p>Yes, creating an account will help you manage your appointments easily and receive notifications.</p>
-            </div>
-
-            <div class="faq">
-                <h2>What should I bring to my appointment?</h2>
-                <p>Please bring a valid ID, insurance information (if applicable), and any relevant medical records.</p>
-            </div>
-            <div class="faq">
-  <h2>What happens if I miss my appointments?</h2>
-  <p>If you miss <strong>4 appointments</strong>, you will receive a warning email.  
-     On the <strong>5th missed appointment</strong>, your account will be temporarily 
-     <strong>blocked for 3 days</strong>. After this period, your account will be 
-     automatically unblocked and you can book appointments again.</p>
-</div>
-<div class="faq">
-  <h2>How can I book an appointment?</h2>
-  <p>You can book an appointment by logging into your account, choosing a doctor, selecting a date and time, and confirming the booking.</p>
-</div>
-
-           
+      <nav>
+        <div class="logo">
+          <img
+            src="images/Da.png"
+            alt="DocAssist Logo"
+            onerror="this.src = 'https://via.placeholder.com/60'"
+          />
+          <h1>DocAssist</h1>
         </div>
-            <div class="footer">
-                <div class="contact-info">
+        <i id="bar" class="fa-solid fa-bars"></i>
+        <ul id="navMenu">
+          <li>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="Alldoctorsreal.html"
+              ><i class="fas fa-user-md"></i> Find a Doctor</a
+            >
+          </li>
+          <li>
+            <a href="Contactus.html"
+              ><i class="fas fa-envelope"></i> Contact Us</a
+            >
+          </li>
+          <li>
+            <a href="Faqs.html"><i class="fas fa-question-circle"></i> FAQs</a>
+          </li>
+          <!-- Dynamic Profile Section (shown only when patient is logged in) -->
+          <li id="profileMenu" class="dropdown" style="display: none">
+            <a href="javascript:void(0);" class="profile-icon">
+              <i class="fa-solid fa-user-circle"></i> My Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="myprofile.html"
+                  ><i class="fa-regular fa-id-card"></i> My Profile</a
+                >
+              </li>
+              <li>
+                <a href="MyAppointments.html"
+                  ><i class="fa-regular fa-calendar-check"></i> My
+                  Appointments</a
+                >
+              </li>
+            </ul>
+          </li>
+          <!-- Dynamic Login / Logout Button -->
+          <li id="authButton">
+            <a href="login.html" class="login-button">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <h1 class="FAQ">Frequently Asked Questions</h1>
+      <div class="faq-container">
+        <div class="faq">
+          <h2>How do I know if my appointment is confirmed?</h2>
+          <p>
+            After booking, you will see your appointment listed in your
+            dashboard. You will also receive an email confirming your
+            appointment.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>Can I leave feedback for a doctor?</h2>
+          <p>
+            Yes, after your appointment, you will have the option to leave
+            feedback and a rating for the doctor.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>What if I need to cancel my appointment?</h2>
+          <p>
+            You can cancel your appointment through your account on our website.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>Do I need to create an account to book an appointment?</h2>
+          <p>
+            Yes, creating an account will help you manage your appointments
+            easily and receive notifications.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>What should I bring to my appointment?</h2>
+          <p>
+            Please bring a valid ID, insurance information (if applicable), and
+            any relevant medical records.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>What happens if I miss my appointments?</h2>
+          <p>
+            If you miss <strong>4 appointments</strong>, you will receive a
+            warning email. On the <strong>5th missed appointment</strong>, your
+            account will be temporarily <strong>blocked for 3 days</strong>.
+            After this period, your account will be automatically unblocked and
+            you can book appointments again.
+          </p>
+        </div>
+        <div class="faq">
+          <h2>How can I book an appointment?</h2>
+          <p>
+            You can book an appointment by logging into your account, choosing a
+            doctor, selecting a date and time, and confirming the booking.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="contact-info">
           <h3>Contact Us</h3>
           <p>DocAssist hospital</p>
           <p>123 main Street Rawalpindi</p>
           <p>Phone: 051- 456-7890</p>
-          <p>Email:  assistdoc4@gmail.com</p>
+          <p>Email: assistdoc4@gmail.com</p>
         </div>
-                <div class="quick-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="Aboutus.html">About Us</a></li>
-                        <li><a href="Alldoctorsreal.html">Doctors</a></li>
-                        <li><a href="Faqs.html">FAQS</a></li>
-                    </ul>
-                </div>
-                <div class="Legal">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="Privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            </div>
-
-        <script>
-            const faqs = document.querySelectorAll('.faq h2');
-            faqs.forEach(faq => {
-                faq.addEventListener('click', () => {
-                    const answer = faq.nextElementSibling;
-                    answer.style.display = answer.style.display === 'none' || answer.style.display === '' ? 'block' : 'none';
-                });
-            });
-
-             document.getElementById('bar').addEventListener('click', function () {
-                    const menu = document.querySelector('nav ul');
-                    menu.classList.toggle('active'); 
-                });
-        </script>
-<script src="http://localhost:3000/socket.io/socket.io.js"></script>
-
-<script>
-  const socket = io("http://localhost:3000");
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const userId = localStorage.getItem("userId");
-    const role = localStorage.getItem("userRole");
-
-    if (userId && role) {
-      console.log(" Reconnecting user:", userId, role);
-      socket.emit("join_user", { userId, role });
-    }
-  });
-</script>
+        <div class="quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="Aboutus.html">About Us</a></li>
+            <li><a href="Alldoctorsreal.html">Doctors</a></li>
+            <li><a href="Faqs.html">FAQS</a></li>
+          </ul>
+        </div>
+        <div class="Legal">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="Privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-</body>
 
+    <!-- Socket.io and dynamic navbar script -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+      // ---------- NAVBAR DYNAMIC BEHAVIOR (Login / My Profile) ----------
+      // This script checks localStorage for userRole & userId.
+      // If role === "patient" -> show profile dropdown + logout, hide login button.
+      // Else (no user / other roles) -> show login button, hide profile dropdown.
 
+      function updateNavbarForAuth() {
+        const userRole = localStorage.getItem("userRole");
+        const authToken = localStorage.getItem("authToken");
+        const profileMenu = document.getElementById("profileMenu");
+        const authButton = document.getElementById("authButton");
+
+        // If user is logged in as patient
+        if (userRole === "patient" && authToken) {
+          // Show profile dropdown, hide login button
+          if (profileMenu) profileMenu.style.display = "inline-block";
+          if (authButton) {
+            authButton.style.display = "block";
+            // Replace inner content with Logout button styled like reference
+            authButton.innerHTML = `
+                        <a href="javascript:void(0);" id="logoutNavBtn" class="login-button" style="background: #c0392b; border-radius:30px;">
+                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                        </a>
+                    `;
+            // Attach logout event
+            const logoutBtn = document.getElementById("logoutNavBtn");
+            if (logoutBtn) {
+              logoutBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Clear all user data from localStorage
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("userRole");
+                localStorage.removeItem("userId");
+                localStorage.removeItem("userName");
+                // Redirect to FAQs page (or refresh to update navbar)
+                window.location.href = "Faqs.html";
+              });
+            }
+          }
+          // Ensure dropdown toggle works
+          const dropdown = profileMenu;
+          const profileIconLink = dropdown?.querySelector(".profile-icon");
+          if (profileIconLink) {
+            // Remove any previous listeners to avoid duplication
+            const newIcon = profileIconLink.cloneNode(true);
+            profileIconLink.parentNode.replaceChild(newIcon, profileIconLink);
+            newIcon.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dropdown.classList.toggle("active");
+            });
+          }
+        } else {
+          // Not logged in or not patient: show login button, hide profile dropdown
+          if (profileMenu) profileMenu.style.display = "none";
+          if (authButton) {
+            authButton.style.display = "block";
+            authButton.innerHTML = `
+                        <a href="login.html" class="login-button">
+                            <i class="fa-solid fa-right-to-bracket"></i> Login
+                        </a>
+                    `;
+          }
+        }
+      }
+
+      // Hamburger menu toggle for mobile
+      function initMobileMenu() {
+        const barIcon = document.getElementById("bar");
+        const navMenu = document.getElementById("navMenu");
+        if (barIcon && navMenu) {
+          barIcon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+          });
+          // Close menu when clicking outside (optional)
+          document.addEventListener("click", (event) => {
+            if (!navMenu.contains(event.target) && event.target !== barIcon) {
+              navMenu.classList.remove("active");
+            }
+          });
+        }
+      }
+
+      // FAQ toggle logic (accordion style with plus/minus)
+      function initFaqToggles() {
+        const faqItems = document.querySelectorAll(".faq");
+        faqItems.forEach((item) => {
+          const question = item.querySelector("h2");
+          const answer = item.querySelector("p");
+          // Initially answer hidden
+          if (answer) answer.style.display = "none";
+          question.addEventListener("click", () => {
+            const isActive = item.classList.contains("active");
+            // Close all others (optional - keeps only one open)
+            faqItems.forEach((f) => {
+              if (f !== item) {
+                f.classList.remove("active");
+                const otherAns = f.querySelector("p");
+                if (otherAns) otherAns.style.display = "none";
+              }
+            });
+            if (!isActive) {
+              item.classList.add("active");
+              if (answer) answer.style.display = "block";
+            } else {
+              item.classList.remove("active");
+              if (answer) answer.style.display = "none";
+            }
+          });
+        });
+      }
+
+      // Socket.io connection as per original requirement
+      function initSocketConnection() {
+        // Use the same backend URL as your reference (update if needed)
+        const socketUrl = "https://docassist-production-56b5.up.railway.app";
+        // If running locally fallback to localhost:3000 (optional)
+        let socket;
+        try {
+          socket = io(socketUrl, { autoConnect: true });
+        } catch (err) {
+          console.warn("Socket connection fallback to localhost");
+          socket = io("http://localhost:3000");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const userId = localStorage.getItem("userId");
+          const role = localStorage.getItem("userRole");
+          if (userId && role) {
+            console.log("🔄 Reconnecting user via socket:", userId, role);
+            socket.emit("join_user", { userId, role });
+          }
+        });
+      }
+
+      // ----- Ensure that after login/logout page reflects changes (e.g., when redirected from login) -----
+      // Also listen to storage events in case another tab updates (cross-tab consistency)
+      window.addEventListener("storage", (event) => {
+        if (event.key === "userRole" || event.key === "authToken") {
+          updateNavbarForAuth();
+        }
+      });
+
+      // Run everything after DOM ready
+      document.addEventListener("DOMContentLoaded", () => {
+        updateNavbarForAuth();
+        initMobileMenu();
+        initFaqToggles();
+        initSocketConnection();
+
+        // Additional: For dropdown close when clicking outside (global)
+        document.addEventListener("click", function (e) {
+          const profileDropdown = document.getElementById("profileMenu");
+          if (profileDropdown && profileDropdown.style.display !== "none") {
+            if (!profileDropdown.contains(e.target)) {
+              profileDropdown.classList.remove("active");
+            }
+          }
+        });
+      });
+    </script>
+    <!-- Additional style to align logout button behavior -->
+    <style>
+      #logoutNavBtn {
+        background: #c0392b !important;
+        transition: 0.2s;
+      }
+      #logoutNavBtn:hover {
+        background: #a52315 !important;
+        color: white !important;
+        border-bottom: none !important;
+      }
+      .profile-icon i,
+      .profile-icon {
+        transition: 0.2s;
+      }
+      .dropdown-menu li a i {
+        margin-right: 8px;
+        width: 20px;
+      }
+    </style>
+  </body>
 </html>
