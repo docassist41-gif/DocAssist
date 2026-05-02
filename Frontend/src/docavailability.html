@@ -957,7 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function toggleAvailability(newStatus) {
                 const token = localStorage.getItem('authToken');
-                fetch(`http://localhost:3000/api/doctors/${doctorId}/status`, {
+                fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}/status`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -979,7 +979,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function loadAvailability() {
             const token = localStorage.getItem('authToken');
-            fetch(`http://localhost:3000/api/doctors/${doctorId}/availability`, {
+            fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}/availability`, {
                 headers: { "Authorization": `Bearer ${token}` }
             })
                 .then(res => res.json())
@@ -1646,7 +1646,7 @@ function highlightErrorRows() {
 
             if (!confirm(`Are you sure you want to delete availability for ${formattedDate}?`)) return;
 
-            fetch(`http://localhost:3000/api/doctors/${doctorId}/availability/${formattedDate}`, {
+            fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}/availability/${formattedDate}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -1684,7 +1684,7 @@ function highlightErrorRows() {
         return;
     }
 
-    fetch(`http://localhost:3000/api/doctors/${doctorId}/availability`, {
+    fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}/availability`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -1862,7 +1862,7 @@ function highlightErrorRows() {
                         const doctorId = localStorage.getItem("doctorId");
                         const token = localStorage.getItem("authToken");
 
-                        fetch(`http://localhost:3000/api/doctors/${doctorId}/availability/order`, {
+                        fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}/availability/order`, {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",
@@ -1893,10 +1893,10 @@ function highlightErrorRows() {
         }  
 
     </script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
 <script>
-  const socket = io("http://localhost:3000");
+  const socket = io("https://docassist-production-56b5.up.railway.app");
 
   document.addEventListener("DOMContentLoaded", () => {
     const userId = localStorage.getItem("userId");

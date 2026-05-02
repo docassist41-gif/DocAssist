@@ -294,7 +294,7 @@
       </div>
     </div>
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
 
       const userId = localStorage.getItem("doctorId");
       const role = "doctor";
@@ -314,7 +314,7 @@
       async function loadChats() {
         try {
           const res = await fetch(
-            `http://localhost:3000/api/chats/between/${userId}/${adminId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/between/${userId}/${adminId}`,
           );
           const chats = await res.json();
           chatBox.innerHTML = "";

@@ -681,7 +681,7 @@
       </div>
     </div>
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
       let allUsersCache = [];
       let allUsersMasterCache = [];
       let latestOnlineUsers = {};
@@ -1086,7 +1086,7 @@
           currentChatStatus.textContent = "Click on a user to start chatting";
         if (currentChatAvatar) currentChatAvatar.textContent = "👤";
         const res = await fetch(
-          `http://localhost:3000/api/admin/users/${role}`,
+          `https://docassist-production-56b5.up.railway.app/api/admin/users/${role}`,
         );
         const users = await res.json();
 
@@ -1220,7 +1220,7 @@
         });
         // Load ONLY messages between this admin and the selected user
         const res = await fetch(
-          `http://localhost:3000/api/chats/between/689f5be6e5432f608d4b3a54/${user._id}`,
+          `https://docassist-production-56b5.up.railway.app/api/chats/between/689f5be6e5432f608d4b3a54/${user._id}`,
         );
         const chats = await res.json();
 
@@ -1234,14 +1234,17 @@
    MARK READ
 ---------------------------- */
       async function markMessagesAsRead(userId) {
-        await fetch(`http://localhost:3000/api/admin/chats/mark-read`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userId,
-            adminId: "689f5be6e5432f608d4b3a54",
-          }),
-        });
+        await fetch(
+          `https://docassist-production-56b5.up.railway.app/api/admin/chats/mark-read`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId,
+              adminId: "689f5be6e5432f608d4b3a54",
+            }),
+          },
+        );
 
         unreadCountsCache[userId] = 0;
         saveUnreadCounts();
@@ -1356,7 +1359,7 @@
           // Load patients
           const token = localStorage.getItem("authToken");
           const patientsRes = await fetch(
-            `http://localhost:3000/api/admin/users/patients`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/users/patients`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -1371,7 +1374,7 @@
 
           // Load doctors
           const doctorsRes = await fetch(
-            `http://localhost:3000/api/admin/users/doctors`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/users/doctors`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -1486,7 +1489,7 @@
           }
 
           const response = await fetch(
-            "http://localhost:3000/api/admin/unread-counts/689f5be6e5432f608d4b3a54",
+            "https://docassist-production-56b5.up.railway.app/api/admin/unread-counts/689f5be6e5432f608d4b3a54",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

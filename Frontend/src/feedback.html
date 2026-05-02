@@ -322,7 +322,7 @@
 
         try {
           const res = await fetch(
-            `http://localhost:3000/api/doctors/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`,
             {
               headers: token ? { Authorization: `Bearer ${token}` } : {},
             },
@@ -363,7 +363,7 @@
 
           try {
             const res = await fetch(
-              "http://localhost:3000/api/feedback/feedback",
+              "https://docassist-production-56b5.up.railway.app/api/feedback/feedback",
               {
                 method: "POST",
                 headers: {
@@ -395,10 +395,10 @@
           }
         });
     </script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
 
       document.addEventListener("DOMContentLoaded", () => {
         const userId = localStorage.getItem("userId");

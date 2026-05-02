@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             console.log(" Fetching chats to count admin unread messages...");
-            const res = await fetch(`http://localhost:3000/api/chats/${userId}?role=patient`, {
+            const res = await fetch(`https://docassist-production-56b5.up.railway.app/api/chats/${userId}?role=patient`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             
@@ -606,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Connect socket
     console.log("🔌 Connecting to socket...");
-    const socket = io("http://localhost:3000");
+    const socket = io("https://docassist-production-56b5.up.railway.app");
     
     socket.on('connect', () => {
         console.log(" Socket connected successfully!");
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Mark ONLY admin messages as read
                 console.log(" Marking admin messages as read...");
-                const markReadRes = await fetch(`http://localhost:3000/api/chats/read/${adminId}/${userId}`, {
+                const markReadRes = await fetch(`https://docassist-production-56b5.up.railway.app/api/chats/read/${adminId}/${userId}`, {
                     method: 'PUT',
                     headers: { 
                         'Authorization': `Bearer ${token}`,

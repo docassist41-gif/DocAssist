@@ -598,7 +598,7 @@
         const token = localStorage.getItem("authToken");
         try {
           const countsRes = await fetch(
-            "http://localhost:3000/api/admin/dashboard/user-counts",
+            "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/user-counts",
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -610,7 +610,7 @@
             countsData.doctorCount || 0;
 
           const appointmentsRes = await fetch(
-            "http://localhost:3000/api/admin/dashboard/todays-appointments",
+            "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/todays-appointments",
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -629,7 +629,7 @@
         const token = localStorage.getItem("authToken");
         try {
           const res = await fetch(
-            "http://localhost:3000/api/admin/dashboard/todays-appointments",
+            "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/todays-appointments",
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -694,19 +694,19 @@
         try {
           const [patientsRes, appointmentsRes, doctorsRes] = await Promise.all([
             fetch(
-              "http://localhost:3000/api/admin/dashboard/patients-time-series",
+              "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/patients-time-series",
               {
                 headers: { Authorization: "Bearer " + token },
               },
             ),
             fetch(
-              "http://localhost:3000/api/admin/dashboard/appointments-time-series",
+              "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/appointments-time-series",
               {
                 headers: { Authorization: "Bearer " + token },
               },
             ),
             fetch(
-              "http://localhost:3000/api/admin/dashboard/doctors-time-series",
+              "https://docassist-production-56b5.up.railway.app/api/admin/dashboard/doctors-time-series",
               {
                 headers: { Authorization: "Bearer " + token },
               },
@@ -813,7 +813,7 @@
         }
       }
 
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
       const chatBtn = document.getElementById("chatBtn");
       const chatNotification = document.getElementById("chatNotification");
 
@@ -827,7 +827,7 @@
 
         try {
           const res = await fetch(
-            "http://localhost:3000/api/admin/total-unread",
+            "https://docassist-production-56b5.up.railway.app/api/admin/total-unread",
             {
               headers: {
                 Authorization: "Bearer " + token,

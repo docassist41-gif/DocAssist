@@ -536,7 +536,6 @@
     </div>
 
     <script>
-      // Mobile sidebar toggle
       const bar = document.getElementById("bar");
       const sidebar = document.querySelector(".sidebar");
       const overlay = document.getElementById("overlay");
@@ -555,7 +554,6 @@
         overlay.classList.remove("active");
       });
 
-      // Access control: redirect to login if not admin
       window.addEventListener("DOMContentLoaded", () => {
         const role = localStorage.getItem("userRole");
         if (role !== "admin") {
@@ -576,9 +574,12 @@
       async function fetchPatients() {
         const token = localStorage.getItem("authToken");
         try {
-          const res = await fetch("http://localhost:3000/api/admin/patients", {
-            headers: { Authorization: "Bearer " + token },
-          });
+          const res = await fetch(
+            "https://docassist-production-56b5.up.railway.app/api/admin/patients",
+            {
+              headers: { Authorization: "Bearer " + token },
+            },
+          );
           const patients = await res.json();
           const tbody = document.querySelector("#patientsTable tbody");
           tbody.innerHTML = "";
@@ -592,11 +593,9 @@
             console.error("Unexpected response:", patients);
             return;
           }
-          // Save patients globally for search + pagination
           allPatients = patients;
           filteredPatients = [...allPatients];
 
-          // Render with pagination
           displayPatients();
 
           tbody.querySelectorAll(".deactivate-btn").forEach((button) => {
@@ -620,13 +619,12 @@
               `tr[data-id="${highlightId}"]`,
             );
             if (rowToHighlight) {
-              rowToHighlight.style.backgroundColor = "#fff3cd"; // light yellow
+              rowToHighlight.style.backgroundColor = "#fff3cd";
               rowToHighlight.scrollIntoView({
                 behavior: "smooth",
                 block: "center",
               });
 
-              // Optional: fade the highlight after a few seconds
               setTimeout(() => {
                 rowToHighlight.style.transition = "background-color 2s ease";
                 rowToHighlight.style.backgroundColor = "";
@@ -664,7 +662,7 @@
           showLoader();
 
           const res = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}`,
             {
               method: "DELETE",
               headers: { Authorization: "Bearer " + token },
@@ -695,7 +693,7 @@
           showLoader();
 
           const res = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}/deactivate`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}/deactivate`,
             {
               method: "PATCH",
               headers: { Authorization: "Bearer " + token },
@@ -723,7 +721,7 @@
           showLoader();
 
           const res = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}/activate`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}/activate`,
             {
               method: "PATCH",
               headers: { Authorization: "Bearer " + token },
@@ -821,7 +819,6 @@
         document.getElementById("loaderOverlay").style.display = "none";
       }
 
-      // Scroll to top on page load
       window.addEventListener("load", () => {
         window.scrollTo(0, 0);
       });

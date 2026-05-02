@@ -702,7 +702,8 @@
         sidebar.classList.remove("active");
         overlay.classList.remove("active");
       });
-      const apiBaseUrl = "http://localhost:3000/api/doctors";
+      const apiBaseUrl =
+        "https://docassist-production-56b5.up.railway.app/api/doctors";
       const userRole = localStorage.getItem("userRole") || "patient";
 
       document.getElementById("logoutBtn").addEventListener("click", () => {
@@ -782,7 +783,7 @@
           }
 
           card.innerHTML = `
-      ${doctor.photo ? `<img src="http://localhost:3000/uploads/${doctor.photo}" alt="${doctor.name}" />` : ""}
+      ${doctor.photo ? `<img src="https://docassist-production-56b5.up.railway.app/uploads/${doctor.photo}" alt="${doctor.name}" />` : ""}
       <div class="doctor-info">
         <p class="doctor-name">${doctor.name}</p>
         <p class="specialty">${formatSpecialties(doctor.speciality)}</p>
@@ -816,7 +817,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/doctors/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`,
           );
           if (!response.ok) throw new Error("Failed to fetch doctor details");
           const doctor = await response.json();
@@ -824,7 +825,7 @@
           modalDoctorName.textContent = `Dr. ${doctor.name}`;
 
           doctorDetailsDiv.innerHTML = `
-      ${doctor.photo ? `<div class="modal-doctor-img"><img src="http://localhost:3000/uploads/${doctor.photo}" alt="${doctor.name}"></div>` : ""}
+      ${doctor.photo ? `<div class="modal-doctor-img"><img src="https://docassist-production-56b5.up.railway.app/uploads/${doctor.photo}" alt="${doctor.name}"></div>` : ""}
       <div class="doctor-detail"><strong>Name:</strong> <span>Dr. ${doctor.name}</span></div>
       <div class="doctor-detail"><strong>Email:</strong> <span>${doctor.email || "N/A"}</span></div>
       <div class="doctor-detail"><strong>Specialty:</strong> <span>${formatSpecialties(doctor.speciality)}</span></div>
@@ -854,7 +855,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/feedback/doctors/${doctorId}/feedback`,
+            `https://docassist-production-56b5.up.railway.app/api/feedback/doctors/${doctorId}/feedback`,
           );
           if (!response.ok) throw new Error("Failed to fetch feedbacks");
           const feedbacks = await response.json();

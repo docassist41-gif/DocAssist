@@ -592,7 +592,7 @@
       async function fetchPatientDetails() {
         try {
           const res = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}`,
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -640,7 +640,7 @@
 
           // Fetch appointments
           const res2 = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}/appointments`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}/appointments`,
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -655,7 +655,7 @@
       async function unblockPatient() {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/admin/patients/${patientId}/unblock`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/patients/${patientId}/unblock`,
             {
               method: "PUT",
               headers: {

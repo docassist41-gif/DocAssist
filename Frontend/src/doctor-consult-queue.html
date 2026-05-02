@@ -240,7 +240,7 @@
       />
     </audio>
 
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
     <script>
       let doctorId = null;
       let socket = null;
@@ -263,7 +263,7 @@
       });
 
       function initSocket() {
-        socket = io("http://localhost:3000");
+        socket = io("https://docassist-production-56b5.up.railway.app");
         socket.on("connect", () => {
           socket.emit("join_user", { userId: doctorId, role: "doctor" });
         });
@@ -277,7 +277,7 @@
         try {
           const token = localStorage.getItem("authToken");
           const response = await fetch(
-            `http://localhost:3000/api/consultation/doctor/${doctorId}/pending`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/doctor/${doctorId}/pending`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -293,7 +293,7 @@
         try {
           const token = localStorage.getItem("authToken");
           const response = await fetch(
-            `http://localhost:3000/api/consultation/doctor/${doctorId}/completed`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/doctor/${doctorId}/completed`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -390,7 +390,7 @@
 
           // Accept the consultation
           await fetch(
-            `http://localhost:3000/api/consultation/${roomId}/accept`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/${roomId}/accept`,
             {
               method: "PUT",
               headers: {
@@ -402,7 +402,7 @@
 
           // Start the call
           await fetch(
-            `http://localhost:3000/api/consultation/${roomId}/start`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/${roomId}/start`,
             {
               method: "PUT",
               headers: {
@@ -433,7 +433,7 @@
         try {
           const token = localStorage.getItem("authToken");
           await fetch(
-            `http://localhost:3000/api/consultation/${roomId}/reject`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/${roomId}/reject`,
             {
               method: "PUT",
               headers: {

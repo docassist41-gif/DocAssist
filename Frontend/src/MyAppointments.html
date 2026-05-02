@@ -1325,12 +1325,15 @@
         console.log("Retrieved patientId from localStorage:", patientId);
         showLoader();
 
-        fetch(`http://localhost:3000/api/appointments/patient/${patientId}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/appointments/patient/${patientId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        })
+        )
           .then((response) => {
             if (!response.ok) throw new Error("Failed to fetch appointments");
             return response.json();
@@ -1340,7 +1343,7 @@
 
             // Fetch feedbacks from database using your existing endpoint
             return fetch(
-              `http://localhost:3000/api/feedback/patient/${patientId}`,
+              `https://docassist-production-56b5.up.railway.app/api/feedback/patient/${patientId}`,
               {
                 method: "GET",
                 headers: {
@@ -1390,7 +1393,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/waitinglist/patient/${patientId}`,
+            `https://docassist-production-56b5.up.railway.app/api/waitinglist/patient/${patientId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -1584,7 +1587,7 @@
         try {
           // Mark messages from this doctor as read
           await fetch(
-            `http://localhost:3000/api/chats/read/${doctorId}/${patientId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/read/${doctorId}/${patientId}`,
             {
               method: "PUT",
               headers: {
@@ -1662,12 +1665,18 @@
 
         // Fetch appointment details and feedback together
         Promise.all([
-          fetch(`http://localhost:3000/api/appointments/${appointmentId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          fetch(`http://localhost:3000/api/feedback/patient/${patientId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
+          fetch(
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          ),
+          fetch(
+            `https://docassist-production-56b5.up.railway.app/api/feedback/patient/${patientId}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          ),
         ])
           .then(async ([appointmentRes, feedbackRes]) => {
             if (!appointmentRes.ok)
@@ -1824,7 +1833,7 @@
           showLoader();
 
           fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/cancel`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/cancel`,
             {
               method: "PUT",
               headers: {
@@ -1882,7 +1891,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/unread/doctor/${userId}
+            `https://docassist-production-56b5.up.railway.app/api/chats/unread/doctor/${userId}
 `,
             {
               headers: { Authorization: `Bearer ${token}` },
@@ -1927,10 +1936,10 @@
         document.getElementById("loader").style.display = "none";
       }
     </script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
 
       document.addEventListener("DOMContentLoaded", () => {
         const userId = localStorage.getItem("userId");

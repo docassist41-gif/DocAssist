@@ -878,7 +878,9 @@
           return;
         }
 
-        fetch(`http://localhost:3000/api/doctors/${doctorId}`)
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`,
+        )
           .then(async (response) => {
             if (!response.ok) throw new Error(await response.text());
             return response.json();
@@ -931,7 +933,7 @@
               }
             }
             profileDiv.innerHTML = `
-                            <img src="http://localhost:3000/uploads/${
+                            <img src="https://docassist-production-56b5.up.railway.app/uploads/${
                               doctor.photo
                             }" alt="${doctor.name}">
                             <h2>Dr. ${doctor.name}</h2>
@@ -1011,7 +1013,9 @@
       let allFeedbacks = [];
 
       function fetchFeedbackForDoctor(doctorId) {
-        fetch(`http://localhost:3000/api/feedback/doctors/${doctorId}/feedback`)
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/feedback/doctors/${doctorId}/feedback`,
+        )
           .then((response) => {
             if (!response.ok) throw new Error("Failed to fetch feedback");
             return response.json();
@@ -1186,14 +1190,17 @@
           comment: comment.trim(),
         };
 
-        fetch(`http://localhost:3000/api/feedback/${feedbackId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/feedback/${feedbackId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(updatedFeedback),
           },
-          body: JSON.stringify(updatedFeedback),
-        })
+        )
           .then((response) => {
             if (!response.ok) throw new Error("Failed to update feedback");
             return response.json();
@@ -1216,12 +1223,15 @@
         const doctorId = new URLSearchParams(window.location.search).get("id");
         console.log("Token in deleteFeedback:", token);
 
-        fetch(`http://localhost:3000/api/feedback/feedback/${feedbackId}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/feedback/feedback/${feedbackId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        })
+        )
           .then((response) => {
             if (!response.ok) throw new Error("Failed to delete feedback");
             console.log("Feedback deleted");
@@ -1236,7 +1246,7 @@
         const profileDiv = document.getElementById("profile");
 
         profileDiv.innerHTML = `
-        <img src="http://localhost:3000/uploads/${doctor.photo}" alt="${
+        <img src="https://docassist-production-56b5.up.railway.app/uploads/${doctor.photo}" alt="${
           doctor.name
         }">
         <h2><input type="text" id="edit-name" value="${doctor.name}" /></h2>
@@ -1274,14 +1284,17 @@
 
         const token = localStorage.getItem("authToken");
 
-        fetch(`http://localhost:3000/api/doctors/${doctorId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(updatedDoctor),
           },
-          body: JSON.stringify(updatedDoctor),
-        })
+        )
           .then((response) => {
             if (!response.ok)
               throw new Error("Failed to update doctor profile");
@@ -1328,10 +1341,10 @@
           .join(" ");
       }
     </script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
     <script>
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
 
       document.addEventListener("DOMContentLoaded", () => {
         const userId = localStorage.getItem("userId");

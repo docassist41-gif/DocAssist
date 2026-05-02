@@ -399,7 +399,7 @@
       console.log(" PATIENT CHAT PAGE LOADED");
       console.log("Socket.io available?", typeof io !== "undefined");
 
-      const socket = io("http://localhost:3000");
+      const socket = io("https://docassist-production-56b5.up.railway.app");
 
       socket.on("connect", () => {
         console.log(" Patient chat socket connected!");
@@ -421,7 +421,7 @@
         try {
           // Mark ONLY admin messages as read
           const response = await fetch(
-            `http://localhost:3000/api/chats/read/${adminId}/${userId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/read/${adminId}/${userId}`,
             {
               method: "PUT",
               headers: {
@@ -449,10 +449,8 @@
       } // Function to update the badge on homepage
       function updateMessageBadge(count) {
         console.log("Updating badge with count:", count);
-        // Store in localStorage so homepage can read it
         localStorage.setItem("adminUnreadCount", count);
 
-        // Also try to update any badge on current page
         const badge = document.getElementById("messageBadge");
         if (badge) {
           if (count > 0) {
@@ -495,8 +493,6 @@
         });
       }
 
-      // join room for live updates
-      // WITH THIS:
       if (userId) {
         console.log(" Emitting join_user for patient:", userId);
         socket.emit("join_user", { userId, role });
@@ -506,14 +502,14 @@
         });
       }
 
-      // Replace your fetch call with this:
       console.log("Fetching previous chats for:", userId);
-      fetch(`http://localhost:3000/api/chats/${userId}?role=patient`)
+      fetch(
+        `https://docassist-production-56b5.up.railway.app/api/chats/${userId}?role=patient`,
+      )
         .then((res) => res.json())
         .then((chats) => {
           console.log("Loaded", chats.length, "total messages");
 
-          // ✅ FILTER: Only show messages between patient and THIS SPECIFIC ADMIN
           const adminConversation = chats.filter(
             (chat) =>
               (chat.senderId === userId && chat.receiverId === receiverId) || // Patient sent to admin
@@ -530,10 +526,9 @@
 
           if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
 
-          // Calculate ONLY ADMIN unread messages from THIS ADMIN
           const adminUnreadCount = adminConversation.filter(
             (chat) =>
-              chat.senderId === receiverId && // Only this specific admin
+              chat.senderId === receiverId &&
               chat.read === false &&
               chat.senderRole === "admin",
           ).length;
@@ -543,19 +538,16 @@
         })
         .catch((err) => console.error("Error loading chats:", err));
 
-      // Replace your socket listener with this:
       socket.on("new_message", (msg) => {
-        // ✅ ONLY show messages from this specific admin OR messages patient sent to this admin
         const isWithThisAdmin =
           (msg.senderId === userId && msg.receiverId === receiverId) || // Patient sent to this admin
           (msg.senderId === receiverId && msg.receiverId === userId); // This admin sent to patient
 
-        // Also ensure it's not a message from doctors
         const isFromDoctor =
           msg.senderRole === "doctor" || msg.receiverRole === "doctor";
 
         if (isWithThisAdmin && !isFromDoctor) {
-          console.log("✅ Showing admin message");
+          console.log(" Showing admin message");
           addMessage(msg);
           if (msg.senderId === receiverId) {
             clearUnreadMessages();
@@ -568,9 +560,7 @@
         }
       });
 
-      // Function to update the badge on homepage
       function updateMessageBadge(count) {
-        // Try to update badge on current page
         const badge = document.getElementById("messageBadge");
         if (badge) {
           if (count > 0) {
@@ -581,11 +571,9 @@
           }
         }
 
-        // Store in localStorage so homepage can read it
         localStorage.setItem("adminUnreadCount", count);
       }
 
-      // send message
       function sendMessage() {
         if (isSending) return;
         const msg = msgInput.value.trim();
@@ -607,10 +595,7 @@
         }, 500);
       }
 
-      // receive real-time messages
-      // WITH THIS:
       socket.on("new_message", (msg) => {
-        // ✅ SKIP if the message was sent by current user (already handled)
         // if (msg.senderId === userId) {
         //   console.log("Skipping own message from socket");
         //   return;

@@ -366,12 +366,14 @@
         </div>
       </div>
     </div>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
     <script>
       // const socket = io("http://localhost:3000");
 
-      const socket = io("http://localhost:3000", { autoConnect: false });
+      const socket = io("https://docassist-production-56b5.up.railway.app", {
+        autoConnect: false,
+      });
       function togglePassword(inputId, icon) {
         const input = document.getElementById(inputId);
 
@@ -537,7 +539,7 @@
 
         console.log(" Starting login process:", { email, role });
 
-        fetch("http://localhost:3000/auth/login", {
+        fetch("https://docassist-production-56b5.up.railway.app/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -695,11 +697,14 @@
           alert("Please fix the highlighted errors before signing up.");
           return;
         }
-        const response = await fetch("http://localhost:3000/auth/signup", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password, role, name, phone, cnic }),
-        });
+        const response = await fetch(
+          "https://docassist-production-56b5.up.railway.app/auth/signup",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, role, name, phone, cnic }),
+          },
+        );
 
         if (response.ok) {
           alert("Signup successful! Please check your email for the OTP.");
@@ -725,11 +730,14 @@
       }
 
       async function requestOtp(email) {
-        const response = await fetch("http://localhost:3000/auth/request-otp", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
+        const response = await fetch(
+          "https://docassist-production-56b5.up.railway.app/auth/request-otp",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          },
+        );
 
         if (!response.ok) {
           const errorText = await response.text();
@@ -750,7 +758,7 @@
           console.log("Email:", email);
           console.log("OTP:", otp);
           const response = await fetch(
-            "http://localhost:3000/auth/verify-otp",
+            "https://docassist-production-56b5.up.railway.app/auth/verify-otp",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

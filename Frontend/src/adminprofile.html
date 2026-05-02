@@ -287,7 +287,7 @@
       async function fetchProfile() {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/admin/${adminId}`,
+            `https://docassist-production-56b5.up.railway.app/api/admin/${adminId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -347,7 +347,7 @@
 
           try {
             const response = await fetch(
-              `http://localhost:3000/api/admin/profile`,
+              `https://docassist-production-56b5.up.railway.app/api/admin/profile`,
               {
                 method: "PUT",
                 headers: {
@@ -395,7 +395,7 @@
 
           try {
             const response = await fetch(
-              `http://localhost:3000/api/admin/profile/change-password`,
+              `https://docassist-production-56b5.up.railway.app/api/admin/profile/change-password`,
               {
                 method: "PUT",
                 headers: {

@@ -497,7 +497,7 @@
       <p>&copy; 2024 DocAssist. All rights reserved.</p>
     </div>
 
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
     <script>
       let socket = null;
       let currentDoctor = null;
@@ -535,7 +535,7 @@
           socket.disconnect();
         }
 
-        socket = io("http://localhost:3000");
+        socket = io("https://docassist-production-56b5.up.railway.app");
 
         socket.on("connect", () => {
           console.log("Socket connected");
@@ -599,9 +599,12 @@
         const token = localStorage.getItem("authToken");
         const patientId = localStorage.getItem("patientId");
 
-        fetch(`http://localhost:3000/api/appointments/patient/${patientId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/appointments/patient/${patientId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        )
           .then((res) => res.json())
           .then((appointments) => {
             const doctorsMap = new Map();
@@ -663,7 +666,7 @@
         const token = localStorage.getItem("authToken");
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/unread/patient/${userId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/unread/patient/${userId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -703,7 +706,7 @@
 
         try {
           await fetch(
-            `http://localhost:3000/api/chats/read/${doctorId}/${userId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/read/${doctorId}/${userId}`,
             {
               method: "PUT",
               headers: {
@@ -794,7 +797,10 @@
         await loadChatHistory(doctorId);
 
         // Join private conversation room for real-time messages
-        socket.emit("join_conversation", { userId: userId, otherUserId: doctorId });
+        socket.emit("join_conversation", {
+          userId: userId,
+          otherUserId: doctorId,
+        });
 
         // Close sidebar on mobile
         if (window.innerWidth <= 768) {
@@ -810,7 +816,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/${userId}/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/${userId}/${doctorId}`,
             { headers: { Authorization: `Bearer ${token}` } },
           );
 
@@ -874,7 +880,6 @@
         const messageDiv = document.createElement("div");
         messageDiv.className = `message ${isSent ? "sent" : "received"}`;
 
-        // ✅ FIX: Properly parse the timestamp
         let timeString = "Just now";
         try {
           let date;
@@ -919,7 +924,6 @@
 
         isSending = true;
 
-        // ✅ Use ISO string format for consistent date handling
         const now = new Date();
         const timestamp = now.toISOString();
 
@@ -956,14 +960,17 @@
         const token = localStorage.getItem("authToken");
 
         try {
-          await fetch("http://localhost:3000/api/chats", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+          await fetch(
+            "https://docassist-production-56b5.up.railway.app/api/chats",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify(messageData),
             },
-            body: JSON.stringify(messageData),
-          });
+          );
         } catch (error) {
           console.error("Error saving message:", error);
         }

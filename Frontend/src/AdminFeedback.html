@@ -482,7 +482,7 @@
         const token = localStorage.getItem("authToken");
         try {
           const res = await fetch(
-            "http://localhost:3000/api/feedback/admin/all",
+            "https://docassist-production-56b5.up.railway.app/api/feedback/admin/all",
             {
               headers: { Authorization: "Bearer " + token },
             },
@@ -620,7 +620,7 @@
 
         try {
           const res = await fetch(
-            `http://localhost:3000/api/feedback/feedback/${feedbackId}`,
+            `https://docassist-production-56b5.up.railway.app/api/feedback/feedback/${feedbackId}`,
             {
               method: "DELETE",
               headers: { Authorization: "Bearer " + token },

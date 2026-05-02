@@ -322,7 +322,7 @@ if (contactForm) {
         submitBtn.disabled = true;
         
         try {
-            const response = await fetch('http://localhost:3000/contact', {
+            const response = await fetch('https://docassist-production-56b5.up.railway.app/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, phone, message })

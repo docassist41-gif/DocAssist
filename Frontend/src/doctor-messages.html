@@ -526,7 +526,7 @@
           socket.disconnect();
         }
 
-        socket = io("http://localhost:3000");
+        socket = io("https://docassist-production-56b5.up.railway.app");
 
         socket.on("connect", () => {
           console.log("Socket connected");
@@ -585,7 +585,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/appointments/doctor/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/doctor/${doctorId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -648,7 +648,7 @@
         const token = localStorage.getItem("authToken");
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/unread/doctor/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/unread/doctor/${doctorId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -668,7 +668,7 @@
           const patient = allPatients[i];
           try {
             const response = await fetch(
-              `http://localhost:3000/api/chats/${doctorId}/${patient.patientId}?limit=1`,
+              `https://docassist-production-56b5.up.railway.app/api/chats/${doctorId}/${patient.patientId}?limit=1`,
               {
                 headers: { Authorization: `Bearer ${token}` },
               },
@@ -794,7 +794,7 @@
         try {
           // Mark messages from this patient as read
           await fetch(
-            `http://localhost:3000/api/chats/read/${patientId}/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/read/${patientId}/${doctorId}`,
             {
               method: "PUT",
               headers: {
@@ -842,7 +842,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/${doctorId}/${patientId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/${doctorId}/${patientId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },

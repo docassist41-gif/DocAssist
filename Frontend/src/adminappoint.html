@@ -885,7 +885,7 @@
       async function fetchAppointments() {
         try {
           const response = await fetch(
-            "http://localhost:3000/api/appointments/all",
+            "https://docassist-production-56b5.up.railway.app/api/appointments/all",
           );
           if (!response.ok) throw new Error("Network response was not ok");
           const appointments = await response.json();
@@ -994,7 +994,7 @@
 
         try {
           const res = await fetch(
-            `http://localhost:3000/api/doctors/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -1007,7 +1007,7 @@
 
           // Fetch all appointments to check booked slots
           const appointmentsRes = await fetch(
-            `http://localhost:3000/api/appointments/all`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/all`,
           );
           const allAppointments = await appointmentsRes.json();
 
@@ -1112,7 +1112,7 @@
           const token = localStorage.getItem("authToken");
 
           const res = await fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/reschedule`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/reschedule`,
             {
               method: "PUT",
               headers: {

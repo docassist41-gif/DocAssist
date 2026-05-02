@@ -215,7 +215,7 @@
         try {
           const token = localStorage.getItem("authToken");
           const response = await fetch(
-            `http://localhost:3000/api/consultation/room/${roomId}`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/room/${roomId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -280,7 +280,7 @@
         try {
           const token = localStorage.getItem("authToken");
           await fetch(
-            `http://localhost:3000/api/consultation/${roomId}/cancel`,
+            `https://docassist-production-56b5.up.railway.app/api/consultation/${roomId}/cancel`,
             {
               method: "PUT",
               headers: {

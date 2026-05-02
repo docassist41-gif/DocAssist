@@ -752,7 +752,7 @@ window.onload = function () {
         return;
     }
 
-    fetch('http://localhost:3000/user/profile', {
+    fetch('https://docassist-production-56b5.up.railway.app/user/profile', {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -998,7 +998,7 @@ showLoader();
     showLoader();
     const token = localStorage.getItem('authToken');
 
-    fetch('http://localhost:3000/user/update', {
+    fetch('https://docassist-production-56b5.up.railway.app/user/update', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -1038,10 +1038,10 @@ function showLoader() { document.getElementById('loader').style.display = 'block
 function hideLoader() { document.getElementById('loader').style.display = 'none'; }
 
 </script>
-<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
 <script>
-  const socket = io("http://localhost:3000");
+  const socket = io("https://docassist-production-56b5.up.railway.app");
   socket.on("new_message", () => {
     const badge = document.getElementById("unreadCount");
 

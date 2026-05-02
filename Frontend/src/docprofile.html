@@ -1193,7 +1193,7 @@ document.getElementById("about").addEventListener("input", validateAboutLive);
           window.location.href = "login.html";
           return;
         }
-        fetch(`http://localhost:3000/api/doctors/${doctorId}`, {
+        fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
           .then((res) => res.json())
@@ -1237,7 +1237,7 @@ document.getElementById("about").addEventListener("input", validateAboutLive);
             document.getElementById("locations").value = data.locations || "";
             document.getElementById("degree").value = data.degree || "";
             document.getElementById("profilePic").src = data.photo
-              ? `http://localhost:3000/uploads/${data.photo}`
+              ? `https://docassist-production-56b5.up.railway.app/uploads/${data.photo}`
               : "images/placeholder.png";
             document.getElementById("about").value = data.about || "";
             document.getElementById("change-password-btn").disabled = false;
@@ -1343,7 +1343,7 @@ if (locationsValidation) { alert(locationsValidation); return; }
         }
 
         showLoading(true);
-        fetch(`http://localhost:3000/api/doctors/${doctorId}`, {
+        fetch(`https://docassist-production-56b5.up.railway.app/api/doctors/${doctorId}`, {
           method: "PUT",
           body: profile,
           headers: { Authorization: `Bearer ${token}` },

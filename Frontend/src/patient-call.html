@@ -104,7 +104,7 @@
     </div>
 
     <!-- ✅ IMPORTANT: Socket.IO script MUST be loaded first -->
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
 
     <script>
       const urlParams = new URLSearchParams(window.location.search);
@@ -151,7 +151,7 @@
           return;
         }
 
-        socket = io("http://localhost:3000");
+        socket = io("https://docassist-production-56b5.up.railway.app");
 
         socket.on("connect", () => {
           console.log("Socket connected, joining consultation room:", roomId);
@@ -309,7 +309,7 @@
           await peerConnection.setLocalDescription(answer);
           console.log("Answer created and sent");
           socket.emit("consultation_answer", { roomId, answer });
-          
+
           processIceQueue();
         } catch (err) {
           console.error("Error handling offer:", err);
@@ -327,7 +327,7 @@
             new RTCSessionDescription(answer),
           );
           console.log("Answer set as remote description");
-          
+
           processIceQueue();
         } catch (err) {
           console.error("Error handling answer:", err);
@@ -335,12 +335,16 @@
       }
 
       async function processIceQueue() {
-        console.log(`Processing ${iceCandidateQueue.length} queued ICE candidates`);
+        console.log(
+          `Processing ${iceCandidateQueue.length} queued ICE candidates`,
+        );
         while (iceCandidateQueue.length > 0) {
           const candidate = iceCandidateQueue.shift();
           if (candidate) {
             try {
-              await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+              await peerConnection.addIceCandidate(
+                new RTCIceCandidate(candidate),
+              );
             } catch (err) {
               console.error("Error adding queued ICE candidate:", err);
             }
@@ -382,11 +386,14 @@
         }
 
         try {
-          await fetch(`http://localhost:3000/api/consultation/${roomId}/end`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ duration }),
-          });
+          await fetch(
+            `https://docassist-production-56b5.up.railway.app/api/consultation/${roomId}/end`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ duration }),
+            },
+          );
         } catch (err) {
           console.error("Error ending call:", err);
         }

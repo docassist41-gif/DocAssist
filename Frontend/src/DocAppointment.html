@@ -1188,7 +1188,7 @@
       </div>
     </div>
 
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://docassist-production-56b5.up.railway.app/socket.io/socket.io.js"></script>
     <script>
       console.log("Script loaded");
 
@@ -1259,7 +1259,7 @@
         const doctorId = localStorage.getItem("doctorId");
         if (!doctorId) return;
 
-        socket = io("http://localhost:3000");
+        socket = io("https://docassist-production-56b5.up.railway.app");
 
         socket.on("connect", () => {
           console.log("Chat socket connected");
@@ -1323,7 +1323,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/chats/unread/doctor/${doctorId}`,
+            `https://docassist-production-56b5.up.railway.app/api/chats/unread/doctor/${doctorId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             },
@@ -1350,9 +1350,12 @@
         }
 
         showLoader();
-        fetch(`http://localhost:3000/api/appointments/doctor/${doctorId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        fetch(
+          `https://docassist-production-56b5.up.railway.app/api/appointments/doctor/${doctorId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        )
           .then((res) => {
             if (!res.ok) throw new Error("Failed to fetch appointments");
             return res.json();
@@ -1482,7 +1485,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/reschedule`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/reschedule`,
             {
               method: "PUT",
               headers: {
@@ -1723,7 +1726,7 @@
           showLoader();
 
           fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/arrive`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/arrive`,
             {
               method: "PUT",
               headers: {
@@ -1802,7 +1805,7 @@
         ) {
           showLoader();
           fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/status`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/status`,
             {
               method: "PUT",
               headers: {
@@ -1836,7 +1839,7 @@
         if (confirm("Are you sure you want to cancel this appointment?")) {
           showLoader();
           fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/cancel`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/cancel`,
             {
               method: "PUT",
               headers: {
@@ -1875,7 +1878,7 @@
         ) {
           showLoader();
           fetch(
-            `http://localhost:3000/api/appointments/${appointmentId}/status`,
+            `https://docassist-production-56b5.up.railway.app/api/appointments/${appointmentId}/status`,
             {
               method: "PUT",
               headers: {
